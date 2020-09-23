@@ -1,4 +1,5 @@
 import requests
+import sys
 from graphviz import Digraph
 
 checker = list()
@@ -25,14 +26,13 @@ def addRequires(requires, dot_ref, parent_name):
             global checker
             if tmp_name not in checker:
                 dot_ref.node(tmp_name, tmp_name)
-                #print(getName(requires[i]))
                 checker.append(tmp_name)
                 addRequires(getRequires(tmp_name), dot_ref, tmp_name)
             dot_ref.edge(tmp_name, parent_name)
 
 
 
-package_name = input("Enter package name ")
+package_name = str(sys.argv[1])
 dot = Digraph(comment='Deep search')
 addRequires(getRequires(package_name), dot, package_name)
 

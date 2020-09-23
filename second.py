@@ -1,4 +1,5 @@
 import requests
+import sys
 from graphviz import Digraph
 
 def getRequires(package_name_value):
@@ -11,7 +12,7 @@ def getRequires(package_name_value):
         return None
 
 
-package_name = input("Enter package name ")
+package_name = str(sys.argv[1])
 dot = Digraph(comment='Usual search')
 requires = getRequires(package_name)
 dot.node(package_name, package_name)
