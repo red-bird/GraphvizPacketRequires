@@ -9,9 +9,13 @@ checker = list()
 
 def getRequires(package_name_value):
     url = 'https://pypi.python.org/pypi/' + str(package_name_value) + '/json'
-    data = requests.get(url).json()
-    tmp = data['info']['requires_dist']
-    return tmp
+    try:
+        data = requests.get(url).json()
+        tmp = data['info']['requires_dist']
+        return tmp
+    except Exception:
+        return None
+
 
 
 def getName(name):
@@ -21,15 +25,14 @@ def getName(name):
 def addRequires(requires, dot_ref, parent_name):
     if requires is not None:
         for i in range(len(requires)):
-            tmp_name = str(requires[i])
-            dot_ref.node(tmp_name, tmp_name)
-            dot_ref.edge(tmp_name, parent_name)
-            #print(getName(requires[i]))
-            tmp_name_noversion = getName(requires[i])
+            tmp_name = getName(requires[i])
             global checker
-            if tmp_name_noversion not in checker:
-                checker.append(tmp_name_noversion)
-                addRequires(getRequires(tmp_name_noversion), dot_ref, tmp_name)
+            if tmp_name not in checker:
+                dot_ref.node(tmp_name, tmp_name)
+                #print(getName(requires[i]))
+                checker.append(tmp_name)
+                addRequires(getRequires(tmp_name), dot_ref, tmp_name)
+            dot_ref.edge(tmp_name, parent_name)
 
 
 
