@@ -1,9 +1,5 @@
 import requests
 from graphviz import Digraph
-import os
-
-os.environ["PATH"] += os.pathsep + 'C:/Program Files/Graphviz 2.44.1/bin/'
-
 
 checker = list()
 
@@ -37,8 +33,7 @@ def addRequires(requires, dot_ref, parent_name):
 
 
 package_name = input("Enter package name ")
-dot = Digraph(comment='The Round Table')
+dot = Digraph(comment='Deep search')
 addRequires(getRequires(package_name), dot, package_name)
 
 print(dot.source)
-dot.render('graph.gv', view=True, cleanup=True)
