@@ -1,0 +1,19 @@
+// The Round Table
+digraph {
+	"pyflakes (<2.3.0,>=2.2.0)" [label="pyflakes (<2.3.0,>=2.2.0)"]
+	flake8 -> "pyflakes (<2.3.0,>=2.2.0)"
+	"pycodestyle (<2.7.0,>=2.6.0a1)" [label="pycodestyle (<2.7.0,>=2.6.0a1)"]
+	flake8 -> "pycodestyle (<2.7.0,>=2.6.0a1)"
+	"mccabe (<0.7.0,>=0.6.0)" [label="mccabe (<0.7.0,>=0.6.0)"]
+	flake8 -> "mccabe (<0.7.0,>=0.6.0)"
+	"configparser ; python_version < \"3.2\"" [label="configparser ; python_version < \"3.2\""]
+	flake8 -> "configparser ; python_version < \"3.2\""
+	"functools32 ; python_version < \"3.2\"" [label="functools32 ; python_version < \"3.2\""]
+	flake8 -> "functools32 ; python_version < \"3.2\""
+	"enum34 ; python_version < \"3.4\"" [label="enum34 ; python_version < \"3.4\""]
+	flake8 -> "enum34 ; python_version < \"3.4\""
+	"typing ; python_version < \"3.5\"" [label="typing ; python_version < \"3.5\""]
+	flake8 -> "typing ; python_version < \"3.5\""
+	"importlib-metadata ; python_version < \"3.8\"" [label="importlib-metadata ; python_version < \"3.8\""]
+	flake8 -> "importlib-metadata ; python_version < \"3.8\""
+}
